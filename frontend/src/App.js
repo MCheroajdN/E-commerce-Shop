@@ -1,6 +1,9 @@
 import React from 'react';
-import data from './data'
+import data from './data';
+import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
+import HomeScreen from './Screens/HomeScreen';
+import ProductScreen from './Screens/ProductScreen';
 
 function App() {
   const openMenu = () => {
@@ -11,6 +14,7 @@ function App() {
     document.querySelector(".sidebar").classList.remove("open");
   }
   return (
+    <BrowserRouter>
     <div className="grid-container">
             <header className= "header">
                 <div className="brand">
@@ -42,21 +46,11 @@ function App() {
 
             <main className="main">
                <div className="content">
-                <ul className="products">
-                  {
-                    data.products.map(product =>
-                      <li>
-                      <div className="product">
-                          <img className="product-image" src={product.image} alt="product"/>
-                          <div className="product-name"> <a href = "product.html">{product.name}</a></div>
-                          <div className="product-brand">{product.brand}</div>
-                          <div className="product-price">{product.price}</div>
-                          <div className="product-rating">{product.rating} Stars ({product.numReviews})</div>
-                      </div>
-                  </li> )
-                  }
-                                       
-                </ul>
+                  <Route path="/products/:id" component={ProductScreen} />
+                  <Route path="/" exact={true} component={HomeScreen} />
+
+
+               
                </div>
             </main>
 
@@ -64,6 +58,7 @@ function App() {
                 All rights reserve. Created By M. Chris @ 2021
             </footer>
             </div>
+            </BrowserRouter>
   );
 }
 

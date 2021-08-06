@@ -1,5 +1,5 @@
 
-export default {
+export default  {
 
 products: [
     {
@@ -56,3 +56,4 @@ products: [
 ]
 
 }
+
